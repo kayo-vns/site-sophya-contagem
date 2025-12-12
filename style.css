@@ -1,0 +1,454 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffe6f2 0%, #ffd9ec 100%);
+    color: #8b0058;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border: 3px solid #ff66b2;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    color: #ff1493;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.header .subtitle {
+    font-size: 1.3rem;
+    color: #ff66b2;
+    font-style: italic;
+}
+
+/* Contador de Amor */
+.love-timer {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    text-align: center;
+    border: 3px solid #ff66b2;
+}
+
+.timer-container h2 {
+    color: #ff1493;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.time-unit {
+    background: linear-gradient(145deg, #ff85c0, #ff66b2);
+    color: white;
+    padding: 20px 15px;
+    border-radius: 15px;
+    min-width: 120px;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    transition: transform 0.3s;
+}
+
+.time-unit:hover {
+    transform: translateY(-5px);
+}
+
+.time-unit span {
+    font-size: 3rem;
+    font-weight: bold;
+    display: block;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.time-unit small {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.start-date {
+    font-size: 1.3rem;
+    color: #ff1493;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(255, 182, 193, 0.2);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Carrossel */
+.photo-carousel {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border: 3px solid #ff66b2;
+}
+
+.photo-carousel h2 {
+    color: #ff1493;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.swiper {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    /* centraliza a imagem quando "contain" cria espaços laterais */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff6fa; /* cor suave para "letterbox" */
+}
+
+.photo-card img {
+    /* Ajuste para não cortar a imagem: usar contain, manter proporção */
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s;
+}
+
+.photo-card:hover img {
+    /* reduzir efeito hover para não "dar zoom" demais */
+    transform: scale(1.03);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 105, 180, 0.9);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Mensagem de Amor */
+.love-message {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border: 3px solid #ff66b2;
+}
+
+.love-message h2 {
+    color: #ff1493;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.message-box {
+    background: #fff9fc;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 8px solid #ff66b2;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.message-box p {
+    margin-bottom: 20px;
+    color: #8b0058;
+}
+
+.signature {
+    text-align: right;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #ff1493;
+    margin-top: 30px;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+/* Player de Música */
+.music-player {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border: 3px solid #ff66b2;
+    text-align: center;
+}
+
+.music-player h2 {
+    color: #ff1493;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.player {
+    background: linear-gradient(145deg, #ffebf3, #ffd9ec);
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.song-info h3 {
+    color: #ff1493;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.controls {
+    display: flex;
+    gap: 25px;
+}
+
+.controls button {
+    background: #ff66b2;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+.controls button:hover {
+    background: #ff1493;
+    transform: scale(1.1);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.volume-control i {
+    color: #ff1493;
+    font-size: 1.3rem;
+}
+
+.volume-control input {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #ffb6c1;
+    border-radius: 5px;
+    outline: none;
+}
+
+.volume-control input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #ff1493;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.music-note {
+    font-style: italic;
+    color: #ff66b2;
+    font-size: 1.1rem;
+}
+
+/* Novo estilo para contador rápido */
+.future-love {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.future-text {
+    color: #ff1493;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.fast-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#fastCounter {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.4rem;
+    color: #ff1493;
+    background: linear-gradient(90deg,#fff0f6,#ffe6f2);
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 2px solid #ff66b2;
+    box-shadow: 0 6px 18px rgba(255,105,180,0.15);
+    min-width: 200px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#ellipsis {
+    margin-left: 6px;
+    font-size: 2.4rem;
+    color: #ff1493;
+}
+
+.counter-label {
+    color: #ff66b2;
+    font-weight: bold;
+    margin-top: 4px;
+    font-size: 1rem;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    margin-top: 20px;
+    border: 3px solid #ff66b2;
+}
+
+.hearts {
+    font-size: 2.5rem;
+    color: #ff1493;
+    margin-bottom: 15px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.footer p {
+    font-size: 1.2rem;
+    color: #ff1493;
+    margin-bottom: 10px;
+}
+
+.infinity {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff66b2;
+}
+
+/* Ajustes para player responsivo */
+.simple-player,
+.player {
+    max-width: 640px;
+    margin: 0 auto 20px;
+    width: 100%;
+}
+
+/* iframe do Spotify responsivo: usa aspect-ratio quando possível */
+.spotify-embed,
+.music-player iframe,
+.simple-player iframe {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    min-height: 140px; /* fallback para navegadores sem aspect-ratio */
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    border: none;
+}
+
+/* Em telas muito pequenas, reduz a altura para evitar corte */
+@media (max-width: 480px) {
+    .spotify-embed,
+    .music-player iframe,
+    .simple-player iframe {
+        aspect-ratio: auto;
+        height: 180px !important;
+        min-height: 140px;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .timer {
+        gap: 10px;
+    }
+    
+    .time-unit {
+        min-width: 100px;
+        padding: 15px 10px;
+    }
+    
+    .time-unit span {
+        font-size: 2.2rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .swiper {
+        height: 400px;
+    }
+}

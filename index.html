@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a minha princesa linda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffcfe0 0%, #ff9bc9 50%, #ff85a2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Corações flutuantes no fundo */
+        .hearts-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Container principal */
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(10px);
+            border: 3px solid #ff85a2;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        /* Título fofo */
+        .title {
+            color: #ff6b9d;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff9bc9, transparent);
+        }
+
+        /* O botão especial */
+        .love-btn {
+            background: linear-gradient(145deg, #ff6b9d, #ff477e);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.6);
+            background: linear-gradient(145deg, #ff477e, #ff2e6e);
+        }
+
+        .love-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* Efeito de brilho no botão */
+        .love-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent 20%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 80%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        /* Coração pulsante */
+        .pulse-heart {
+            font-size: 40px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+            color: #ff6b9d;
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mensagem secreta (aparece ao clicar) */
+        .secret-message {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            border: 2px dashed #ff9bc9;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .secret-message h3 {
+            color: #ff477e;
+            margin-bottom: 10px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .love-btn {
+                padding: 18px 40px;
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corações flutuantes -->
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <span class="pulse-heart">💖</span>
+        <h1 class="title">Para o amor da minha vida</h1>
+        
+        <button class="love-btn" id="loveButton">
+            Clique Aqui 💝
+        </button>
+        
+        <!-- Mensagem secreta que aparece -->
+        <div class="secret-message" id="secretMessage">
+            <h3>✨ Você é especial! ✨</h3>
+            <p>Este site foi feito com todo o carinho do mundo só para você, meu amor!</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #ff6b9d;">
+               Ainda não acabou...
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Criar corações flutuantes
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Efeito do botão
+        const button = document.getElementById('loveButton');
+        const secretMessage = document.getElementById('secretMessage');
+        let clickCount = 0;
+
+        button.addEventListener('click', function() {
+            // Efeito visual
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 10);
+            
+            // Contar cliques
+            clickCount++;
+            
+            // Mostrar mensagem secreta
+            if (clickCount === 1) {
+                secretMessage.style.display = 'block';
+                this.innerHTML = 'Clique de novo! 🌸';
+            } else if (clickCount === 2) {
+                this.innerHTML = 'Mais uma vez! 💫';
+                secretMessage.innerHTML = `
+                    <h3>💌 Minha mensagem para você </h3>
+                    <p>Você ilumina meus dias de uma forma que eu não sabia que era possível</p>
+                    <p style="margin-top: 10px; font-style: italic; color: #ff6b9d;">
+                        Cada momento ao seu lado é especial...
+                    </p>
+                `;
+            } else if (clickCount === 3) {
+                // Surpresa final - mostra mensagem final e prepara redirecionamento
+                this.innerHTML = 'Você ganhou! 🎁';
+                secretMessage.innerHTML = `
+                    <h3>🎀 Parabéns! 🎀</h3>
+                    <p>Quer saber o que ganhou?</p>
+                    <p>Aperta o botão mais uma vez pra descobrir</p>
+                    <p style="margin-top: 15px; font-size: 18px; color: #ff477e;">
+                        Eu te amo mais que tudo! 💖
+                    </p>
+                `;
+                
+                // Efeito de confete
+                createConfetti();
+
+                // Fazer o próximo clique (no botão que agora mostra "Você ganhou! 🎁")
+                // redirecionar para contagem.html (uma vez).
+                this.addEventListener('click', function redirectToContagem() {
+                    window.location.href = 'contagem.html';
+                }, { once: true });
+            }
+        });
+
+        // Efeito de confete
+        function createConfetti() {
+            const confetti = ['🎀', '🌸', '💖', '✨', '🎉', '💝', '🌺'];
+            const container = document.getElementById('heartsContainer');
+            
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'heart';
+                piece.innerHTML = confetti[Math.floor(Math.random() * confetti.length)];
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.top = '-10px';
+                piece.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                piece.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                piece.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                container.appendChild(piece);
+                
+                // Remover após animação
+                setTimeout(() => piece.remove(), 5000);
+            }
+        }
+
+        // Inicializar corações quando a página carregar
+        window.addEventListener('load', function() {
+            createHearts();
+            
+            // Adicionar música de fundo opcional (descomente se quiser)
+            /*
+            const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3');
+            audio.loop = true;
+            audio.volume = 0.3;
+            audio.play();
+            */
+        });
+
+        // Efeito de digitação no título (opcional)
+        const title = document.querySelector('.title');
+        const originalText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // Iniciar efeito de digitação após 1 segundo
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
